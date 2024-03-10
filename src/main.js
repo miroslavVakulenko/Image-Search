@@ -31,8 +31,9 @@ function searchForm(evt) {
       message: 'Please, enter the value!',
     });
   } else {
-    fetchImg(inputValue, 1)
+    fetchImg(inputValue)
       .then(res => {
+        console.log(res.data);
         //if img not find show alert
         if (res.total === 0) {
           iziToast.show({
@@ -43,7 +44,8 @@ function searchForm(evt) {
         } else {
           //clear
           imgList.innerHTML = '';
-          imgList.insertAdjacentHTML('beforeend', createMarkup(res.hits));
+
+          imgList.insertAdjacentHTML('beforeend', createMarkup(res.data));
           gallerySimple.refresh();
         }
       })
@@ -68,7 +70,72 @@ function searchForm(evt) {
   }
 }
 
-function createMarkup(images) {
+const initPaginationHandler = (state, request, page) => {
+  const parent = document.querySelector('.gallery');
+
+  if (state) {
+    parent.insertAdjacentHTML(
+      'beforeend',
+      '<button class="gallery__action" type="button">Load more</button>'
+    );
+
+    const trigger = parent.querySelector('.gallery__action');
+
+    trigger.addEventListener('click', () => {
+      page += 1;
+      trigger.remove();
+      toggleLoader(true);
+      setTimeout(async () => {
+        await fetchImages(request, page);
+        windowScrollHandler();
+      }, 500);
+    });
+  } else {
+    const trigger = parent.querySelector('.gallery__action');
+
+    if (!trigger) {
+      return;
+    }
+
+    trigger.remove();
+  }
+};
+
+const initGalleryItems = (total, request, page) => {
+  const items = [...document.querySelectorAll('.gallery__item')];
+  const trigger = document.querySelector('.gallery__action');
+  const parent = document.querySelector('.gallery');
+
+  if (!items.length || trigger) {
+    return;
+  }
+
+  if (items.length < total) {
+    initPaginationHandler(true, request, page);
+  } else {
+    initPaginationHandler(false);
+    parent.insertAdjacentHTML(
+      'beforeend',
+      `<p class="gallery__meassage">We're sorry, but you've reached the end of search results.</p>`
+    );
+  }
+};
+
+function createMarkup({ hits, totalHits }, images) {
+  if (!hits.length) {
+    iziToast.error({
+      class: 'popup-message',
+      theme: 'dark',
+      backgroundColor: '#ef4040',
+      messageColor: '#fff',
+      iconUrl: Error,
+      position: 'topRight',
+      pauseOnHover: true,
+      timeout: 3000,
+      message: `Sorry, there are no images matching your search query. Please, try again!`,
+    });
+    toggleLoader(false);
+  }
   return images
     .map(
       ({
@@ -96,6 +163,7 @@ function createMarkup(images) {
       }
     )
     .join('');
+  initGalleryItems(totalHits, request, page);
 }
 //at repeated input unlock button
 jsInput.addEventListener('input', function () {

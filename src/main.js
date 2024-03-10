@@ -87,7 +87,7 @@ const initPaginationHandler = (state, request, page) => {
       trigger.remove();
       toggleLoader(true);
       setTimeout(async () => {
-        await fetchImg(request, page);
+        await fetchImg(request, 1);
         windowScrollHandler();
       }, 500);
     });
@@ -122,7 +122,7 @@ const initGalleryItems = (total, request, page) => {
   }
 };
 
-function createMarkup({ hits, totalHits }, request) {
+function createMarkup({ hits, totalHits }, request, page) {
   if (!hits.length) {
     iziToast.error({
       class: 'popup-message',

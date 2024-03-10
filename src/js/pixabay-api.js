@@ -5,7 +5,7 @@ import axios from 'axios';
 const API_URL = 'https://pixabay.com/api/';
 const API_KEY = '42512017-1bddfdd3afd2851258a10c68c';
 
-const fetchImg = async (userRequest, page = 15) => {
+const fetchImg = async (userRequest, page) => {
   const response = await axios.get(
     `${API_URL}?key=${API_KEY}&q=${userRequest}&image_type=photo&orientation=horizontal&safesearch=true`,
     {

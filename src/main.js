@@ -7,7 +7,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import { fetchImg } from './js/pixabay-api';
 // import { fetchImg } from './js/render-functions';
 
-const gallerySimple = new SimpleLightbox('.gallery a', {
+const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
@@ -32,7 +32,7 @@ function searchForm(evt) {
       message: 'Please, enter the value!',
     });
   } else {
-    fetchImg(inputValue)
+    fetchImg(inputValue, 1)
       .then(res => {
         console.log(res.data);
         //if img not find show alert
@@ -87,7 +87,7 @@ const initPaginationHandler = (state, request, page) => {
       trigger.remove();
       toggleLoader(true);
       setTimeout(async () => {
-        await fetchImages(request, page);
+        await fetchImg(request, page);
         windowScrollHandler();
       }, 500);
     });
@@ -122,7 +122,7 @@ const initGalleryItems = (total, request, page) => {
   }
 };
 
-function createMarkup({ hits, totalHits }) {
+function createMarkup({ hits, totalHits }, request) {
   if (!hits.length) {
     iziToast.error({
       class: 'popup-message',
@@ -168,7 +168,7 @@ function createMarkup({ hits, totalHits }) {
   );
   divGallery.insertAdjacentHTML('beforeend', galleryItems.join(''));
   lightbox.refresh();
-  initGalleryItems(totalHits, request, page);
+  initGalleryItems(totalHits, jsInput, page);
 }
 //at repeated input unlock button
 jsInput.addEventListener('input', function () {

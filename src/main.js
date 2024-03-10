@@ -17,6 +17,7 @@ const imgList = document.querySelector('.images-list');
 const form = document.querySelector('.js-form');
 const jsInput = document.querySelector('input[name="js-input"]');
 const loader = document.querySelector('.loader');
+const divGallery = document.querySelector('.div-gallery');
 loader.style.display = 'none';
 
 form.addEventListener('submit', searchForm);
@@ -121,7 +122,7 @@ const initGalleryItems = (total, request, page) => {
   }
 };
 
-function createMarkup({ hits, totalHits }, images) {
+function createMarkup({ hits, totalHits }) {
   if (!hits.length) {
     iziToast.error({
       class: 'popup-message',
@@ -136,18 +137,20 @@ function createMarkup({ hits, totalHits }, images) {
     });
     toggleLoader(false);
   }
-  return images
-    .map(
-      ({
-        webformatURL,
-        largeImageURL,
-        tags,
-        likes,
-        views,
-        comments,
-        downloads,
-      }) => {
-        return `<li class="gallery__item">
+
+  const galleryItems = [];
+
+  hits.map(
+    ({
+      webformatURL,
+      largeImageURL,
+      tags,
+      likes,
+      views,
+      comments,
+      downloads,
+    }) => {
+      const markup = `<li class="gallery__item">
         <div class="gallery__card">
           <a href="${largeImageURL}" class="gallery-card__link"
             ><img src="${webformatURL}" alt="${tags}" class="gallery-card__image"
@@ -160,9 +163,11 @@ function createMarkup({ hits, totalHits }, images) {
           </div>
         </div>
       </li>`;
-      }
-    )
-    .join('');
+      galleryItems.push(markup);
+    }
+  );
+  divGallery.insertAdjacentHTML('beforeend', galleryItems.join(''));
+  lightbox.refresh();
   initGalleryItems(totalHits, request, page);
 }
 //at repeated input unlock button

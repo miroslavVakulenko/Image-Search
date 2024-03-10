@@ -18,7 +18,7 @@ const fetchImg = async (userRequest, page = 15) => {
       },
     }
   );
-  return response.data;
+  return response;
 };
 
 // function fetchImg(userRequest, per_page = 9) {

@@ -46,7 +46,10 @@ function searchForm(evt) {
           //clear
           imgList.innerHTML = '';
 
-          imgList.insertAdjacentHTML('beforeend', createMarkup(res.data));
+          imgList.insertAdjacentHTML(
+            'beforeend',
+            createMarkup(res.data, inputJs, page)
+          );
           lightbox.refresh();
         }
       })

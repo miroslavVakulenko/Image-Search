@@ -47,7 +47,7 @@ function searchForm(evt) {
           imgList.innerHTML = '';
 
           imgList.insertAdjacentHTML('beforeend', createMarkup(res.data));
-          gallerySimple.refresh();
+          lightbox.refresh();
         }
       })
       .catch(err => {
@@ -71,6 +71,18 @@ function searchForm(evt) {
   }
 }
 
+const windowScrollHandler = () => {
+  const itemHeight = document
+    .querySelector('.images-list')
+    .firstElementChild.getBoundingClientRect().height;
+
+  window.scrollBy({
+    top: itemHeight * 2 + 48,
+    left: 0,
+    behavior: 'smooth',
+  });
+};
+
 const initPaginationHandler = (state, request, page) => {
   const parent = document.querySelector('.gallery');
 
@@ -85,7 +97,7 @@ const initPaginationHandler = (state, request, page) => {
     trigger.addEventListener('click', () => {
       page += 1;
       trigger.remove();
-      toggleLoader(true);
+      // toggleLoader(true);
       setTimeout(async () => {
         await fetchImg(request, 1);
         windowScrollHandler();
@@ -119,6 +131,21 @@ const initGalleryItems = (total, request, page) => {
       'beforeend',
       `<p class="gallery__meassage">We're sorry, but you've reached the end of search results.</p>`
     );
+  }
+};
+
+const toggleLoader = state => {
+  const parent = document.querySelector('.gallery');
+  if (state) {
+    parent.insertAdjacentHTML('beforeend', '<div class="loader"></div>');
+  } else {
+    const loader = parent.querySelector('.loader');
+
+    if (!loader) {
+      return;
+    }
+
+    loader.remove();
   }
 };
 

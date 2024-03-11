@@ -281,37 +281,6 @@ body.hidden-scroll {
   font-size: 2rem;
 }
 
-@media (min-width: 35.5em) {
-  .sl-wrapper .sl-navigation button {
-    width: 44px;
-  }
-
-  .sl-wrapper .sl-navigation button.sl-next {
-    right: 10px;
-    font-size: 3rem;
-  }
-
-  .sl-wrapper .sl-navigation button.sl-prev {
-    left: 10px;
-    font-size: 3rem;
-  }
-}
-
-@media (min-width: 50em) {
-  .sl-wrapper .sl-navigation button {
-    width: 44px;
-  }
-
-  .sl-wrapper .sl-navigation button.sl-next {
-    right: 20px;
-    font-size: 3rem;
-  }
-
-  .sl-wrapper .sl-navigation button.sl-prev {
-    left: 20px;
-    font-size: 3rem;
-  }
-}
 
 .sl-wrapper.sl-dir-rtl .sl-navigation {
   direction: ltr;
@@ -333,34 +302,6 @@ body.hidden-scroll {
   height: auto;
 }
 
-@media (min-width: 35.5em) {
-  .sl-wrapper .sl-image img {
-    border: 0 none;
-  }
-}
-
-@media (min-width: 50em) {
-  .sl-wrapper .sl-image img {
-    border: 0 none;
-  }
-}
-
-.sl-wrapper .sl-image iframe {
-  background: #000;
-  border: 0 none;
-}
-
-@media (min-width: 35.5em) {
-  .sl-wrapper .sl-image iframe {
-    border: 0 none;
-  }
-}
-
-@media (min-width: 50em) {
-  .sl-wrapper .sl-image iframe {
-    border: 0 none;
-  }
-}
 
 .sl-wrapper .sl-image .sl-caption {
   display: none;
@@ -418,82 +359,3 @@ body.hidden-scroll {
   transition: transform ease 200ms;
 }
 
-@-webkit-keyframes pulsate {
-  0% {
-    transform: scale(0.1);
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(1.2);
-    opacity: 0;
-  }
-}
-
-@keyframes pulsate {
-  0% {
-    transform: scale(0.1);
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(1.2);
-    opacity: 0;
-  }
-}
-
-@-moz-keyframes pulsate {
-  0% {
-    transform: scale(0.1);
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(1.2);
-    opacity: 0;
-  }
-}
-
-@-o-keyframes pulsate {
-  0% {
-    transform: scale(0.1);
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(1.2);
-    opacity: 0;
-  }
-}
-
-@-ms-keyframes pulsate {
-  0% {
-    transform: scale(0.1);
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(1.2);
-    opacity: 0;
-  }
-}

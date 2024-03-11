@@ -45,10 +45,10 @@ function searchForm(evt) {
         } else {
           //clear
           imgList.innerHTML = '';
-
+          console.log('inp:', jsInput);
           imgList.insertAdjacentHTML(
             'beforeend',
-            createMarkup(res.data, inputJs, page)
+            createMarkup(res.data, jsInput, 1)
           );
           lightbox.refresh();
         }
@@ -102,7 +102,7 @@ const initPaginationHandler = (state, request, page) => {
       trigger.remove();
       // toggleLoader(true);
       setTimeout(async () => {
-        await fetchImg(request, 1);
+        await fetchImg(request, page);
         windowScrollHandler();
       }, 500);
     });

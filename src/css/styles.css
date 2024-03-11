@@ -6,7 +6,6 @@
 */
 @import url('./reset.css');
 
-
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -73,13 +72,13 @@
 }
 
 /* ==============js form======= */
-.js-form {
+.form {
   display: flex;
   justify-content: center;
   margin-bottom: 32px;
 }
 
-.js-input {
+.form__input {
   width: 272px;
   height: 40px;
   padding-left: 1rem;
@@ -93,15 +92,15 @@
   outline: none;
 }
 
-.js-input:hover {
+.form__input:hover {
   border: 1px solid rgb(0, 0, 0);
 }
 
-.js-input:active {
+.form__input:active {
   border: 1px solid rgb(78, 117, 255);
 }
 
-.js-input::placeholder {
+.form__input::placeholder {
   position: absolute;
   width: 138px;
   height: 24px;
@@ -129,10 +128,14 @@ button {
   border-radius: 8px;
   border: none;
 }
+button.gallery__action{
+  margin: 0 auto;
+  margin-top: 1.5em;
+}
 
 /* ===================== */
 
-.images-list {
+.gallery__list {
   margin: 0 auto;
   width: 1128px;
   display: flex;
@@ -159,4 +162,9 @@ button {
 
 .gallery-card__text {
   text-align: center;
+}
+
+.gallery-card__caption{
+  display: flex;
+  flex-direction: row;
 }

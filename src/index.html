@@ -17,19 +17,10 @@
   <body>
     <section>
       <h1>Example page title</h1>
-      <form action="submit" class="js-form">
-        <input
-          type="text"
-          name="js-input"
-          class="js-input"
-          placeholder="Search images..."
-        />
-        <button type="submit">Search</button>
-      </form>
-      <div class="loader"></div>
-      <!-- <div class="div-gallery"> -->
-      <ul class="images-list div-gallery gallery"></ul>
-      <!-- </div> -->
+      <div class="section__content">
+        <load src="./partials/form.html" />
+        <load src="./partials/gallery.html" />
+      </div>
     </section>
     <script type="module" src="./main.js"></script>
   </body>

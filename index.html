@@ -14,24 +14,30 @@
       rel="stylesheet"
     />
     <script type="module" crossorigin src="/goit-js-hw-12/commonHelpers.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-5401a4b0.js">
-    <link rel="stylesheet" href="/goit-js-hw-12/assets/vendor-cf6910df.css">
-    <link rel="stylesheet" href="/goit-js-hw-12/assets/index-aaf0aa6c.css">
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-32598135.js">
+    <link rel="stylesheet" href="/goit-js-hw-12/assets/index-6b91e691.css">
   </head>
   <body>
     <section>
       <h1>Example page title</h1>
-      <form action="submit" class="js-form">
-        <input
-          type="text"
-          name="js-input"
-          class="js-input"
-          placeholder="Search images..."
-        />
-        <button type="submit">Search</button>
-      </form>
-      <div class="loader"></div>
-      <ul class="images-list gallery"></ul>
+      <div class="section__content">
+        <form class="form" autocomplete="off">
+  <label class="form__label">
+    <input
+      type="text"
+      class="form__input"
+      name="question"
+      placeholder="Search images..."
+    />
+  </label>
+  <button class="form__submit" type="submit">Search</button>
+</form>
+
+        <div class="gallery">
+  <ul class="gallery__list"></ul>
+</div>
+
+      </div>
     </section>
     
   </body>
